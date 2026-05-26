@@ -60,7 +60,7 @@ export default function Header() {
                     href={item.href} 
                     className={cn(
                       "text-sm font-extrabold uppercase tracking-[0.14em] py-1 transition-all whitespace-nowrap",
-                      item.label === 'About' 
+                      item.label === 'Admissions' 
                         ? "text-[#253386] border-b-2 border-[#253386]" 
                         : "text-[#3E3A36] hover:text-[#253386]"
                     )}
