@@ -1,82 +1,64 @@
 import { motion } from 'framer-motion';
+import { CheckCircle2 } from 'lucide-react';
+import { StackedChevrons } from './BackgroundDesigns';
+
+const steps = [
+  { num: "01", title: "Check Eligibility", text: "Review academic requirements for your program.", color: "#312E81" },
+  { num: "02", title: "Entrance Exam", text: "Appear for JEE Main or OJEE.", color: "#0F766E" },
+  { num: "03", title: "Merit Evaluation", text: "Your rank and records are evaluated.", color: "#EA580C" },
+  { num: "04", title: "Confirmation", text: "Complete documentation and fee payment.", color: "#D97706" },
+  { num: "05", title: "Counseling", text: "Get guidance before classes begin.", color: "#312E81" },
+];
 
 const Process = () => {
-  const steps = [
-    {
-      num: "01",
-      title: "Check Eligibility",
-      text: "Review the specific academic requirements for your desired program.",
-      className: "md:col-span-2 md:row-span-2 bg-inst-blue text-white"
-    },
-    {
-      num: "02",
-      title: "Entrance Exam",
-      text: "Appear for JEE Main for B.Tech or OJEE.",
-      className: "md:col-span-1 md:row-span-1 bg-inst-green/90 text-white"
-    },
-    {
-      num: "03",
-      title: "Merit Evaluation",
-      text: "Evaluation based on your entrance test performance and records.",
-      className: "md:col-span-1 md:row-span-1 bg-inst-yellow text-inst-blue"
-    },
-    {
-      num: "04",
-      title: "Confirmation",
-      text: "Secure admission by completing documentation and fee payment.",
-      className: "md:col-span-2 md:row-span-1 bg-inst-blue/90 text-white"
-    },
-    {
-      num: "05",
-      title: "Counseling Support",
-      text: "Receive comprehensive guidance and support before classes officially begin.",
-      className: "md:col-span-4 md:row-span-1 bg-inst-green/90 text-white"
-    }
-  ];
-
   return (
-    <section id="process" className="py-24 relative overflow-hidden">
-      <div className="container">
-        <div className="text-center mb-16">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-pop font-bold uppercase tracking-widest text-sm mb-4 block"
-          >
-            Your Journey
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-extrabold flex items-center justify-center gap-4 flex-wrap mb-4 font-sans text-primary uppercase tracking-tight"
-          >
-            <span className="text-inst-green">Enrolment</span>
-            <span className="font-serif italic font-medium text-inst-yellow lowercase">Process</span>
-          </motion.h2>
-          <p className="text-[#665b55] max-w-xl mx-auto font-light">A seamless 5-step journey from application to enrollment.</p>
-        </div>
+    <section className="relative py-28 md:py-36 overflow-hidden" style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%)' }}>
+      <StackedChevrons />
 
-        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-6 h-auto md:h-[800px]">
-          {steps.map((step, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className={`p-10 rounded-3xl flex flex-col justify-end relative overflow-hidden group shadow-lg backdrop-blur-xl border border-white/20 ${step.className}`}
-            >
-              <span className="absolute top-8 left-8 text-6xl md:text-8xl font-serif font-black opacity-20 pointer-events-none group-hover:opacity-40 transition-opacity">
-                {step.num}
-              </span>
-              <div className="relative z-10">
-                <h4 className="text-2xl font-bold font-sans mb-3 group-hover:translate-x-2 transition-transform duration-300 uppercase tracking-widest leading-none">
-                  {step.title}
-                </h4>
-                <p className="text-sm font-light leading-relaxed opacity-80">{step.text}</p>
-              </div>
-            </motion.div>
-          ))}
+      <div className="max-w-[1400px] mx-auto px-6 xl:px-12 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <div className="inline-block px-3 py-1 rounded bg-[#D97706]/10 text-[#D97706] text-[11px] font-bold uppercase tracking-[0.2em] mb-6">
+            Your Journey
+          </div>
+          <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight">
+            Five steps to <span className="display-font italic font-normal text-[#EA580C]">enrollment.</span>
+          </h2>
+        </motion.div>
+
+        {/* Horizontal stepper — connected dots */}
+        <div className="relative">
+          {/* Connecting line */}
+          <div className="hidden md:block absolute top-[40px] left-[10%] right-[10%] h-[2px] bg-slate-200 z-0" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative z-10">
+            {steps.map((step, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="flex flex-col items-center text-center group"
+              >
+                {/* Circle with number */}
+                <div className="w-20 h-20 rounded-full flex items-center justify-center mb-6 relative transition-all duration-500 group-hover:scale-110 group-hover:shadow-xl"
+                  style={{ backgroundColor: step.color, boxShadow: `0 8px 25px -8px ${step.color}50` }}>
+                  <span className="text-white text-lg font-black">{step.num}</span>
+                  {/* Pulse ring */}
+                  <div className="absolute inset-0 rounded-full border-2 opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-700"
+                    style={{ borderColor: step.color }} />
+                </div>
+
+                <h4 className="text-lg font-black text-slate-900 mb-2 group-hover:translate-y-[-2px] transition-transform">{step.title}</h4>
+                <p className="text-slate-500 text-[13px] leading-relaxed max-w-[180px]">{step.text}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

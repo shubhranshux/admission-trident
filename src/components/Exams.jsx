@@ -1,63 +1,82 @@
 import { motion } from 'framer-motion';
 import { FileText, GraduationCap } from 'lucide-react';
+import { SplitDiagonals } from './BackgroundDesigns';
 
 const Exams = () => {
-  return (
-    <section id="exams" className="py-24 bg-white">
-      <div className="container">
-        <div className="text-center mb-16">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-pop font-bold uppercase tracking-widest text-sm mb-4 block"
-          >
-            Important
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-extrabold flex items-center justify-center gap-4 flex-wrap mb-4 font-sans text-primary uppercase tracking-tight"
-          >
-            <span className="text-inst-blue">Mandatory</span>
-            <span className="font-serif italic font-medium text-inst-yellow lowercase">Examinations</span>
-          </motion.h2>
-          <p className="text-[#665b55] max-w-xl mx-auto font-light">Admission to our programs is strictly through recognized entrance exams.</p>
-        </div>
+  const exams = [
+    {
+      icon: FileText,
+      title: "JEE Main",
+      color: "#312E81",
+      tagline: "National Level · Conducted by NTA",
+      items: ["1st Year B.Tech", "1st Year Integrated 5 Years M.Tech"],
+    },
+    {
+      icon: GraduationCap,
+      title: "OJEE",
+      color: "#EA580C",
+      tagline: "State Level · Odisha JEE",
+      items: ["Lateral Entry B.Tech", "M.Tech", "MCA", "MBA"],
+    }
+  ];
 
-        <div className="flex flex-wrap gap-8 justify-center max-w-5xl mx-auto">
-          {[
-            {
-              icon: <FileText size={48} strokeWidth={1.5} />,
-              title: "JEE Main",
-              items: ["1st Year B.Tech", "1st Year Integrated 5 Years M.Tech"]
-            },
-            {
-              icon: <GraduationCap size={48} strokeWidth={1.5} />,
-              title: "OJEE",
-              items: ["Lateral Entry B.Tech (Diploma & B.Sc.)", "M.Tech", "MCA", "MBA"]
-            }
-          ].map((exam, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.2 }}
-              className="flex-1 min-w-[300px] bg-inst-pink/30 p-12 rounded-3xl border border-primary/20 text-center hover:shadow-2xl transition-all duration-500"
-            >
-              <div className="text-primary flex justify-center mb-8 transform group-hover:scale-110 transition-transform">{exam.icon}</div>
-              <h3 className="text-3xl font-serif font-medium text-accent mb-6 leading-tight uppercase tracking-widest">{exam.title}</h3>
-              <p className="text-sm font-bold text-primary italic uppercase tracking-widest mb-4">Mandatory for admission into:</p>
-              <ul className="space-y-4">
-                {exam.items.map((item, i) => (
-                  <li key={i} className="text-[#665b55] font-sans font-medium text-lg leading-relaxed flex items-center justify-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+  return (
+    <section className="relative py-28 md:py-36 bg-[#F8FAFC] overflow-hidden">
+      <SplitDiagonals />
+
+      <div className="max-w-[1400px] mx-auto px-6 xl:px-12 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="inline-block px-3 py-1 rounded bg-[#312E81]/10 text-[#312E81] text-[11px] font-bold uppercase tracking-[0.2em] mb-6">
+            Important
+          </div>
+          <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight">
+            Mandatory <span className="display-font italic font-normal text-[#D97706]">examinations.</span>
+          </h2>
+        </motion.div>
+
+        {/* Two-column open layout with center divider */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 max-w-5xl">
+          {exams.map((exam, idx) => {
+            const Icon = exam.icon;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: idx === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.15 }}
+                className={`group py-6 ${idx === 0 ? 'md:pr-16 md:border-r border-slate-200' : 'md:pl-16'}`}
+              >
+                {/* Tagline */}
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 block mb-4">{exam.tagline}</span>
+                
+                {/* Icon + Title */}
+                <div className="flex items-center gap-5 mb-6">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
+                    style={{ backgroundColor: `${exam.color}12`, color: exam.color }}>
+                    <Icon size={24} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-5xl md:text-6xl font-black tracking-tight" style={{ color: exam.color }}>{exam.title}</h3>
+                </div>
+
+                {/* Programs list */}
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 block mb-4">Mandatory for admission into:</span>
+                <div className="space-y-3 ml-1">
+                  {exam.items.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 group/item">
+                      <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-transform group-hover/item:scale-150" style={{ backgroundColor: exam.color }} />
+                      <span className="text-slate-700 text-[16px] font-semibold group-hover/item:text-slate-900 transition-colors">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
