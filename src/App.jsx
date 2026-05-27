@@ -10,6 +10,7 @@ import PlacementHighlights from './components/PlacementHighlights';
 import Process from './components/Process';
 import Exams from './components/Exams';
 import ResourcesSection from './components/ResourcesSection';
+import ContactDetails from './components/ContactDetails';
 import Footer from './components/Footer';
 import SectionDivider from './components/SectionDivider';
 
@@ -88,6 +89,9 @@ function App() {
         <SectionDivider type="wave" topColor="#E2E8F0" bottomColor="#F8FAFC" height={60} />
         <Exams />
 
+        {/* Exams (#F8FAFC) → Contact Details (#0F172A) */}
+        <SectionDivider type="curve" topColor="#F8FAFC" bottomColor="#0F172A" height={50} />
+        <ContactDetails />
 
       </main>
       <Footer />
