@@ -46,7 +46,7 @@ export default function ContactDetails() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="contact-details" className="py-24 bg-[#0F172A] relative text-white">
+    <section id="contact-details" className="py-16 md:py-24 bg-[#0F172A] relative text-white">
       <div className="max-w-[1200px] mx-auto px-6 xl:px-14">
         
         {/* Header */}

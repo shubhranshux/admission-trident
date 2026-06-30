@@ -3,7 +3,7 @@ import { DiamondFolds } from './BackgroundDesigns';
 
 const Overview = () => {
   return (
-    <section className="relative py-28 md:py-36 bg-[#F8FAFC] overflow-hidden">
+    <section className="relative py-16 md:py-24 bg-[#F8FAFC] overflow-hidden">
       <DiamondFolds />
 
       <div className="max-w-[1400px] mx-auto px-6 xl:px-12 relative z-10">
@@ -20,7 +20,7 @@ const Overview = () => {
             <div className="inline-block px-3 py-1 rounded bg-[#312E81]/10 text-[#312E81] text-[11px] font-bold uppercase tracking-[0.2em] mb-6">
               Welcome
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.02] tracking-tight mb-8">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-900 leading-[1.02] tracking-tight mb-8">
               Where ambition
               <span className="block display-font italic font-normal text-[#0F766E]"> takes shape.</span>
             </h2>

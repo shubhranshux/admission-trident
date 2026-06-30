@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import { Users, Menu, X, FileText, ChevronDown, Award, CheckCircle, ShieldCheck, FileSpreadsheet, ShieldAlert, BookOpen } from "lucide-react";
 import { NAV_LINKS } from "../data/constants";
 import logo from "../assets/logo.png";
@@ -7,8 +8,15 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const location = useLocation();
   
-  const navActive = scrolled || hovered || mobileOpen;
+  // Pages that have a dark hero image/gradient at the top and require a transparent header
+  const darkHeroPaths = ["/"];
+  const hasDarkHero = darkHeroPaths.includes(location.pathname);
+  
+  // If the page doesn't have a dark hero, make the header solid white immediately.
+  // Otherwise, only make it solid white when scrolled, hovered, or mobile menu is open.
+  const navActive = !hasDarkHero || scrolled || hovered || mobileOpen;
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50);
@@ -17,12 +25,12 @@ export default function Header() {
   }, []);
 
   const mandatoryLinks = [
-    { label: "AICTE Approvals", href: "#", icon: CheckCircle, color: "text-emerald-600", bg: "bg-emerald-50", hover: "group-hover/link:bg-emerald-600" },
-    { label: "BPUT Affiliation", href: "#", icon: Award, color: "text-blue-600", bg: "bg-blue-50", hover: "group-hover/link:bg-blue-600" },
-    { label: "NAAC Certificate", href: "#", icon: ShieldCheck, color: "text-purple-600", bg: "bg-purple-50", hover: "group-hover/link:bg-purple-600" },
-    { label: "NBA Documents", href: "#", icon: FileSpreadsheet, color: "text-amber-600", bg: "bg-amber-50", hover: "group-hover/link:bg-amber-600" },
-    { label: "Financial Audits", href: "#", icon: BookOpen, color: "text-indigo-600", bg: "bg-indigo-50", hover: "group-hover/link:bg-indigo-600" },
-    { label: "Anti-Ragging Policy", href: "#", icon: ShieldAlert, color: "text-rose-600", bg: "bg-rose-50", hover: "group-hover/link:bg-rose-600" }
+    { label: "AICTE Approvals", href: "/aicte-disclosure", icon: CheckCircle, color: "text-emerald-600", bg: "bg-emerald-50", hover: "group-hover/link:bg-emerald-600" },
+    { label: "BPUT Affiliation", href: "/bput-affiliation", icon: Award, color: "text-blue-600", bg: "bg-blue-50", hover: "group-hover/link:bg-blue-600" },
+    { label: "NAAC Certificate", href: "/naac", icon: ShieldCheck, color: "text-purple-600", bg: "bg-purple-50", hover: "group-hover/link:bg-purple-600" },
+    { label: "NBA Documents", href: "/nba", icon: FileSpreadsheet, color: "text-amber-600", bg: "bg-amber-50", hover: "group-hover/link:bg-amber-600" },
+    { label: "Financial Audits", href: "/financial-audits", icon: BookOpen, color: "text-indigo-600", bg: "bg-indigo-50", hover: "group-hover/link:bg-indigo-600" },
+    { label: "Anti-Ragging Policy", href: "/anti-ragging", icon: ShieldAlert, color: "text-rose-600", bg: "bg-rose-50", hover: "group-hover/link:bg-rose-600" }
   ];
 
   return (
@@ -59,7 +67,7 @@ export default function Header() {
                       <a 
                         key={idx} 
                         href={link.href} 
-                        className="group/link flex items-center gap-3 text-[#3E3A36] px-3 py-2.5 rounded-lg hover:bg-slate-50 transition-all duration-300 relative overflow-hidden text-decoration-none"
+                        className="group/link flex items-center gap-3 text-[#3E3A36] px-3 py-2.5 rounded-lg hover:bg-slate-50 transition-all duration-300 relative overflow-hidden"
                       >
                         {/* Subtle colored background on hover */}
                         <div className={`absolute inset-0 opacity-0 group-hover/link:opacity-100 ${link.bg} transition-opacity duration-300 -z-10`}></div>
@@ -82,7 +90,7 @@ export default function Header() {
             </div>
 
             {/* Alumni Portal */}
-            <a href="#" className="flex items-center gap-1.5 text-[10px] font-medium text-[#E8BD63] uppercase tracking-widest hover:text-[#F0D080] transition-colors whitespace-nowrap text-decoration-none">
+            <a href="/alumni" className="flex items-center gap-1.5 text-[10px] font-medium text-[#E8BD63] uppercase tracking-widest hover:text-[#F0D080] transition-colors whitespace-nowrap">
               <Users size={11}/> Alumni
             </a>
           </div>
@@ -97,7 +105,7 @@ export default function Header() {
         <div className="mx-auto px-6 xl:px-12 flex items-center justify-between">
             
           {/* Logo Lockup */}
-          <a href="/" className="flex items-center gap-3.5 group cursor-pointer text-decoration-none">
+          <a href="https://tat.tekkzy.com/" className="flex items-center gap-3.5 group cursor-pointer text-decoration-none">
             <img src={logo} alt="TAT Logo" className="w-12 h-12 md:w-[52px] md:h-[52px] object-contain flex-shrink-0 drop-shadow-sm" />
             <div className="hidden sm:flex flex-col justify-center">
               <div className={"serif text-[22px] md:text-[24px] font-bold leading-none tracking-[0.04em] uppercase transition-colors duration-500 " + (navActive ? "text-[#3E3A36]" : "text-white")}>Trident</div>
@@ -110,12 +118,15 @@ export default function Header() {
           <nav className="hidden lg:block">
             <ul className="flex items-center gap-6 list-none m-0 p-0">
               {NAV_LINKS.map(item => {
-                const isActive = item.label === "Admissions";
+                const isAdmissions = item.label.toLowerCase() === 'admissions';
                 return (
-                  <li key={item.label}>
-                    <a href={item.href} className={`nav-link text-[14px] uppercase tracking-[0.14em] cursor-pointer whitespace-nowrap font-extrabold transition-colors duration-500 text-decoration-none ${isActive ? 'active text-[#1B4D8E]' : (navActive ? "text-[#3E3A36] hover:text-[#1B4D8E]" : "text-white/90 hover:text-white")}`}>
+                  <li key={item.label} className="relative py-1">
+                    <a href={item.href} className={"nav-link text-[14px] uppercase tracking-[0.14em] cursor-pointer whitespace-nowrap font-extrabold transition-colors duration-500 text-decoration-none " + (navActive ? (isAdmissions ? "text-[#1B4D8E]" : "text-[#3E3A36] hover:text-[#1B4D8E]") : "text-white/90 hover:text-white")}>
                       {item.label}
                     </a>
+                    {isAdmissions && (
+                      <div className="absolute -bottom-1 left-0 w-full h-[3px] bg-[#1B4D8E] rounded-full" />
+                    )}
                   </li>
                 );
               })}
@@ -143,14 +154,16 @@ export default function Header() {
           }`}
         >
           <div className="px-6 flex flex-col h-full overflow-y-auto pb-4">
-            {NAV_LINKS.map((item, i) => (
+            {NAV_LINKS.map((item, i) => {
+              const isAdmissions = item.label.toLowerCase() === 'admissions';
+              return (
               <a 
                 key={item.label} 
                 href={item.href} 
                 onClick={() => setMobileOpen(false)}
                 className={`block py-3.5 text-[15px] font-extrabold text-[#3E3A36] uppercase tracking-[0.14em] hover:text-primary hover:bg-soft/50 rounded-lg px-3 transition-all duration-500 transform text-decoration-none ${
                   mobileOpen ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
-                }`}
+                } ${isAdmissions ? 'text-[#1B4D8E]' : ''}`}
                 style={{ 
                   transitionDelay: `${mobileOpen ? i * 40 + 100 : 0}ms`, 
                   borderBottom: i !== NAV_LINKS.length - 1 ? "1px solid rgba(27,77,142,0.1)" : "none" 
@@ -158,7 +171,7 @@ export default function Header() {
               >
                 {item.label}
               </a>
-            ))}
+            )})}
             <div 
               className={`pt-8 px-2 transition-all duration-700 transform ${
                 mobileOpen ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"

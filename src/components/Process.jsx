@@ -12,7 +12,7 @@ const steps = [
 
 const Process = () => {
   return (
-    <section className="relative py-28 md:py-36 overflow-hidden" style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%)' }}>
+    <section className="relative py-16 md:py-24 overflow-hidden" style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%)' }}>
       <StackedChevrons />
 
       <div className="max-w-[1400px] mx-auto px-6 xl:px-12 relative z-10">
@@ -25,7 +25,7 @@ const Process = () => {
           <div className="inline-block px-3 py-1 rounded bg-[#D97706]/10 text-[#D97706] text-[11px] font-bold uppercase tracking-[0.2em] mb-6">
             Your Journey
           </div>
-          <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight">
             Five steps to <span className="display-font italic font-normal text-[#EA580C]">enrollment.</span>
           </h2>
         </motion.div>

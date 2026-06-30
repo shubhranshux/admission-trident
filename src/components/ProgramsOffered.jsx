@@ -25,7 +25,7 @@ const programs = [
 
 const ProgramsOffered = () => {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-12 relative max-w-7xl">
         {/* Title Area */}
         <div className="relative mb-16 inline-block ml-8">
@@ -34,10 +34,10 @@ const ProgramsOffered = () => {
             className="absolute -top-6 -left-8 w-20 h-20 bg-gray-200 -z-10" 
             style={{ clipPath: 'polygon(100% 0, 0 0, 0 100%)', transform: 'rotate(-25deg)' }} 
           />
-          <h2 className="text-5xl font-extrabold text-[#333333] leading-none relative z-10 font-sans tracking-tight mb-2">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#333333] leading-none relative z-10 font-sans tracking-tight mb-2">
             Programs
           </h2>
-          <h3 className="text-4xl font-medium text-[#444444] ml-10 relative z-10 font-sans tracking-tight">
+          <h3 className="text-3xl md:text-4xl font-medium text-[#444444] ml-6 md:ml-10 relative z-10 font-sans tracking-tight">
             Offered
           </h3>
         </div>

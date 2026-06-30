@@ -1,27 +1,32 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight, ArrowDown } from 'lucide-react';
 
+import slide1 from '../assets/slides/slide-1.png';
+import slide2 from '../assets/slides/slide-2.png';
+import slide3 from '../assets/slides/slide-23.jpeg';
+import slide4 from '../assets/slides/slide-4.jpeg';
+
 const SLIDES = [
   {
-    image: "/slide-1.png",
+    image: slide1,
     heading: "Careers that matter, since 2005",
     subtext: "120+ recruiting companies, 94% placement rate, and packages up to 22 LPA. Where ambition meets opportunity.",
     accent: "#312E81",
   },
   {
-    image: "/slide-2.png",
+    image: slide2,
     heading: "Begin your journey at Trident",
     subtext: "Trident Academy of Technology offers world-class undergraduate and postgraduate programs in Engineering, Management, and Computer Applications.",
     accent: "#0F766E",
   },
   {
-    image: "/hero_students_lab.png",
+    image: slide3,
     heading: "Innovation starts in the lab",
     subtext: "State-of-the-art facilities, expert faculty, and hands-on learning prepare you for the challenges of tomorrow.",
     accent: "#EA580C",
   },
   {
-    image: "/hero_graduation.png",
+    image: slide4,
     heading: "Your future starts here",
     subtext: "Join 20+ years of academic excellence. B.Tech, M.Tech, MCA, MBA — find the program that fits your ambition.",
     accent: "#D97706",
@@ -99,7 +104,6 @@ export default function Hero() {
               style={{
                 transform: i === active ? 'scale(1.05)' : 'scale(1.1)',
                 transition: 'transform 8s ease-out',
-                filter: 'brightness(0.4) saturate(1.2)',
               }}
               loading={i < 2 ? 'eager' : 'lazy'}
             />
@@ -107,8 +111,13 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* ═══ Dark base overlay for text readability ═══ */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/90 via-black/60 to-black/10" />
+      {/* ═══ Cinematic film overlay ═══ */}
+      <div 
+        className="absolute inset-0 z-[1]"
+        style={{
+          background: 'linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%)',
+        }}
+      />
 
       {/* ═══ Unique dynamic designs per slide ═══ */}
       <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden">
@@ -153,12 +162,13 @@ export default function Hero() {
 
             {/* Heading */}
             <h1
-              className="text-white leading-[1.08] mb-6"
+              className="text-white leading-[1.08] mb-6 drop-shadow-2xl"
               style={{
                 fontFamily: "'Outfit', sans-serif",
-                fontSize: 'clamp(2.8rem, 6vw, 5rem)',
+                fontSize: 'clamp(2rem, 5vw, 5rem)',
                 fontWeight: 900,
                 letterSpacing: '-0.04em',
+                textShadow: '0 10px 40px rgba(0,0,0,0.6)',
                 opacity: isOut ? 0 : (loaded ? 1 : 0),
                 transform: isOut ? 'translateY(20px)' : (loaded ? 'translateY(0)' : 'translateY(40px)'),
                 filter: isOut ? 'blur(4px)' : 'blur(0)',
@@ -170,12 +180,13 @@ export default function Hero() {
 
             {/* Subtext */}
             <p
-              className="text-neutral-300 mb-8"
+              className="text-neutral-200 mb-8 drop-shadow-lg"
               style={{
                 fontSize: 'clamp(1rem, 1.2vw, 1.15rem)',
                 lineHeight: 1.7,
                 maxWidth: '520px',
-                fontWeight: 400,
+                fontWeight: 500,
+                textShadow: '0 4px 12px rgba(0,0,0,0.5)',
                 opacity: isOut ? 0 : (loaded ? 1 : 0),
                 transform: isOut ? 'translateY(16px)' : (loaded ? 'translateY(0)' : 'translateY(30px)'),
                 transition: isOut ? 'all 400ms ease-out 50ms' : 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 1s',
@@ -185,17 +196,17 @@ export default function Hero() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4" style={{
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4" style={{
               opacity: isOut ? 0 : (loaded ? 1 : 0),
               transform: isOut ? 'translateY(12px)' : (loaded ? 'translateY(0)' : 'translateY(20px)'),
               transition: isOut ? 'all 400ms ease-out 100ms' : 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 1.2s',
             }}>
-              <a href="https://apply-now.tekkzy.com/" className="group inline-flex items-center gap-2 text-[13px] font-bold px-8 py-4 rounded-lg uppercase tracking-[0.1em] transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl text-decoration-none"
+              <a href="https://apply-now.tekkzy.com/" className="group inline-flex justify-center items-center gap-2 text-[13px] font-bold px-8 py-4 w-full sm:w-auto rounded-lg uppercase tracking-[0.1em] transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl text-decoration-none"
                 style={{ backgroundColor: slide.accent, color: '#fff', boxShadow: `0 10px 30px -8px ${slide.accent}80`, transition: 'all 0.8s' }}>
                 Apply Now
                 <ArrowDown size={14} className="rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#downloads" className="inline-flex items-center gap-2 text-[13px] font-bold px-8 py-4 rounded-lg uppercase tracking-[0.1em] border-2 border-white/25 text-white hover:bg-white hover:text-slate-900 transition-all duration-300 text-decoration-none">
+              <a href="#downloads" className="inline-flex justify-center items-center gap-2 text-[13px] font-bold px-8 py-4 w-full sm:w-auto rounded-lg uppercase tracking-[0.1em] border-2 border-white/25 text-white hover:bg-white hover:text-slate-900 transition-all duration-300 text-decoration-none">
                 Download Brochure
               </a>
             </div>
