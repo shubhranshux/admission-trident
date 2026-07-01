@@ -17,7 +17,7 @@ const XIcon = ({ size = 20, className = "" }) => (
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1A1817] text-[#EFE7DF]/80 pt-24 pb-12 relative overflow-hidden font-sans border-t-4 border-[#E5AA3E]">
+    <footer className="bg-[#1A1817] text-[#EFE7DF] pt-24 pb-12 relative overflow-hidden font-sans border-t-4 border-[#E5AA3E]">
       
       {/* Skewed Background Accent */}
       <div className="absolute top-0 right-0 w-1/4 h-full bg-white/[0.02] -skew-x-12 translate-x-20 pointer-events-none"></div>
@@ -44,26 +44,26 @@ export default function Footer() {
                 <div className="h-12 w-[1px] bg-white/10 mx-2"></div>
                 <div className="flex flex-col justify-center">
                   <div className="font-serif text-[28px] text-white leading-none font-bold uppercase">Trident</div>
-                  <div className="text-[10px] font-medium text-[#8B6E66] tracking-[.3em] uppercase mt-2">Academy of Technology</div>
+                  <div className="text-[10px] font-medium text-[#C4A49B] tracking-[.3em] uppercase mt-2">Academy of Technology</div>
                 </div>
               </a>
               
-              <p className="text-gray-400 text-[16px] leading-[1.8] mb-10">
+              <p className="text-gray-200 text-[16px] leading-[1.8] mb-10">
                 Where Education Meets Excellence — Trident Academy of Technology empowers future professionals with quality education, innovation, and industry-ready skills.
               </p>
               
               <div className="grid grid-cols-1 gap-6">
                 <a href="https://contactus-tat.tekkzy.com" className="flex items-start gap-4 hover:text-white transition-colors group text-decoration-none">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-[#8B6E66] flex-shrink-0"><MapPin size={20}/></div>
-                  <div className="text-sm font-medium leading-relaxed">F2/A, Chandaka Industrial Estate,<br/>In front of Infocity, Bhubaneswar,<br/>Odisha, Pin: 751024, India</div>
+                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-[#C4A49B] flex-shrink-0"><MapPin size={20}/></div>
+                  <div className="text-sm font-medium leading-relaxed text-gray-200">F2/A, Chandaka Industrial Estate,<br/>In front of Infocity, Bhubaneswar,<br/>Odisha, Pin: 751024, India</div>
                 </a>
                 <a href="tel:+919861191195" className="flex items-center gap-4 hover:text-white transition-colors group text-decoration-none">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-[#8B6E66]"><Phone size={20}/></div>
-                  <div className="text-sm font-medium">+91 98611 91195</div>
+                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-[#C4A49B]"><Phone size={20}/></div>
+                  <div className="text-sm font-medium text-gray-200">+91 98611 91195</div>
                 </a>
                 <a href="mailto:info@trident.ac.in" className="flex items-center gap-4 hover:text-white transition-colors group text-decoration-none">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-[#8B6E66]"><Mail size={20}/></div>
-                  <div className="text-sm font-medium">info@trident.ac.in</div>
+                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-[#C4A49B]"><Mail size={20}/></div>
+                  <div className="text-sm font-medium text-gray-200">info@trident.ac.in</div>
                 </a>
               </div>
             </div>
@@ -107,7 +107,7 @@ export default function Footer() {
                   <ul className="space-y-5">
                     {col.ls.map((link) => (
                       <li key={link.t}>
-                        <a href={link.h} className="text-[14px] font-medium text-gray-500 hover:text-[#E5AA3E] transition-all flex items-center gap-3 group text-decoration-none">
+                        <a href={link.h} className="text-[14px] font-medium text-gray-200 hover:text-[#E5AA3E] transition-all flex items-center gap-3 group text-decoration-none">
                           <span className="w-0 h-[1px] bg-[#E5AA3E] group-hover:w-4 transition-all duration-300" />
                           {link.t}
                         </a>
@@ -123,10 +123,10 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-center text-center sm:text-left">
-            <span className="text-[11px] font-bold uppercase tracking-[.2em] text-gray-600">
+            <span className="text-[11px] font-bold uppercase tracking-[.2em] text-gray-300">
               © 2026 Trident Academy of Technology. All rights reserved.
             </span>
-            <div className="flex flex-wrap justify-center gap-4 text-[11px] font-medium text-gray-600">
+            <div className="flex flex-wrap justify-center gap-4 text-[11px] font-medium text-gray-300">
                <a href="/privacy-policy" className="hover:text-[#E5AA3E] transition-colors uppercase tracking-wider text-decoration-none">Privacy Policy</a>
                <a href="/disclaimer" className="hover:text-[#E5AA3E] transition-colors uppercase tracking-wider text-decoration-none">Disclaimer</a>
                <a href="/terms-of-use" className="hover:text-[#E5AA3E] transition-colors uppercase tracking-wider text-decoration-none">Terms of Use</a>
@@ -141,7 +141,7 @@ export default function Footer() {
               { Icon: Instagram, href: "https://www.instagram.com/trident_tat/" },
               { Icon: Linkedin, href: "https://www.linkedin.com/school/trident-academy-of-technology-tat-bhubaneswar/" }
             ].map(({ Icon, href }, i) => (
-              <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#E5AA3E] transition-colors text-decoration-none">
+              <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-[#E5AA3E] transition-colors text-decoration-none">
                 <Icon size={20} />
               </a>
             ))}
@@ -150,8 +150,8 @@ export default function Footer() {
 
         {/* Built by credit */}
         <div className="text-center mt-8 pt-6 border-t border-white/5">
-          <span className="text-[11px] font-medium text-gray-600 tracking-wider">
-            Crafted with AI by <a href="https://tekkzy.com" className="text-gray-400 hover:text-[#E5AA3E] transition-colors font-medium text-decoration-none">Tekkzy</a> — AI-Powered Intelligent Cloud Solutions
+          <span className="text-[11px] font-medium text-gray-400 tracking-wider">
+            Crafted with AI by <a href="https://tekkzy.com" className="text-gray-300 hover:text-[#E5AA3E] transition-colors font-medium text-decoration-none">Tekkzy</a> — AI-Powered Intelligent Cloud Solutions
           </span>
         </div>
         
